@@ -73,7 +73,7 @@ Sudachiで定義されている短・中・長単位の3つの分割単位でNWJ
 
 Copyright (c) 2019 National Institute for Japanese Language and Linguistics and Works Applications Co., Ltd. All rights reserved.
 
-Apache License, Version 2.0のライセンスの下で[国立国語研究所](https://www.ninjal.ac.jp/)と[株式会社ワークスアプリケーションズ](https://www.worksap.co.jp/)によって提供されています。
+[Apache License, Version 2.0]((https://www.apache.org/licenses/LICENSE-2.0))の下で[国立国語研究所](https://www.ninjal.ac.jp/)と[株式会社ワークスアプリケーションズ](https://www.worksap.co.jp/)によって提供されています。
 
 ## Slack
 
