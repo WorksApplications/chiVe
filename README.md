@@ -2,7 +2,7 @@
 
 [日本語 README](#chive-日本語readme)
 
-`chiVe` (suda**chi Ve**ctor) is a Japanese pre-trained word embedding using large-scale corpus and multi-granular tokenization.
+`chiVe` (suda**chi Ve**ctor) is a Japanese pre-trained word embedding resource using large-scale corpus and multi-granular tokenization.
 
 Based on the [skip-gram algorithm](https://arxiv.org/abs/1301.3781), we used word2vec ([gensim](https://radimrehurek.com/gensim/)) and [fastText](https://fasttext.cc/) to train  the vectors.
 
