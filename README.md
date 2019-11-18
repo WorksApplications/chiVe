@@ -4,7 +4,7 @@
 
 `chiVe` (suda**chi Ve**ctor) is a Japanese pre-trained word embedding resource using large-scale corpus and multi-granular tokenization.
 
-Based on the [skip-gram algorithm](https://arxiv.org/abs/1301.3781), we used word2vec ([gensim](https://radimrehurek.com/gensim/)) and [fastText](https://fasttext.cc/) to train  the vectors.
+Based on the [skip-gram algorithm](https://arxiv.org/abs/1301.3781), we used word2vec ([gensim](https://radimrehurek.com/gensim/)) to train  the vectors.
 
 We used [NINJAL Web Japanese Corpus (NWJC)](https://pj.ninjal.ac.jp/corpus_center/nwjc/) from National Institute for Japanese Language and Linguistics which contains around 100 million web page text as a training corpus, and used [Sudachi](https://github.com/WorksApplications/Sudachi) by Works Applications for tokenization.
 
@@ -57,7 +57,7 @@ When citing chiVe in papers, books, or services, please use the follow BibTex en
 
 "chiVe" (suda**chi Vector**) は、大規模コーパスと複数粒度分割に基づく日本語単語ベクトルです。
 
-[Skip-gramアルゴリズム](https://arxiv.org/abs/1301.3781)を元に、word2vec （[gensim](https://radimrehurek.com/gensim/)） と [fastText](https://fasttext.cc/) を使用して単語分散表現を構築しています。
+[Skip-gramアルゴリズム](https://arxiv.org/abs/1301.3781)を元に、word2vec （[gensim](https://radimrehurek.com/gensim/)） を使用して単語分散表現を構築しています。
 
 学習コーパスとして約1億のウェブページ文章を含む国立国語研究所の[日本語ウェブコーパス（NWJC）](https://pj.ninjal.ac.jp/corpus_center/nwjc/)を採用し、分かち書きにはワークスアプリケーションズの形態素解析器[Sudachi](https://github.com/WorksApplications/Sudachi)を使用しています。
 
