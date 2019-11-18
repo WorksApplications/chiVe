@@ -17,12 +17,19 @@ We used Sudachi [version 0.1.1](https://github.com/WorksApplications/Sudachi/rel
 
 The format is based on the original word2vec.
 
-
 ## Licence
 
 Copyright (c) 2019 National Institute for Japanese Language and Linguistics and Works Applications Co., Ltd. All rights reserved.
 
 "chiVe" is distributed by [National Institute for Japanese Langauge and Linguistics](https://www.ninjal.ac.jp/) and [Works Applications Co.,Ltd.](https://www.worksap.co.jp/) under [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
+## Slack
+
+We have a Slack workspace for developers and users to ask questions and discuss a variety of topics.
+
+- https://sudachi-dev.slack.com/
+- (Please get an invite from [here](https://join.slack.com/t/sudachi-dev/shared_invite/enQtMzg2NTI2NjYxNTUyLTMyYmNkZWQ0Y2E5NmQxMTI3ZGM3NDU0NzU4NGE1Y2UwYTVmNTViYjJmNDI0MWZiYTg4ODNmMzgxYTQ3ZmI2OWU))
+
 
 ## Citing chiVe
 
@@ -55,7 +62,6 @@ When citing chiVe in papers, books, or services, please use the follow BibTex en
 学習コーパスとして約1億のウェブページ文章を含む国立国語研究所の[日本語ウェブコーパス（NWJC）](https://pj.ninjal.ac.jp/corpus_center/nwjc/)を採用し、分かち書きにはワークスアプリケーションズの形態素解析器[Sudachi](https://github.com/WorksApplications/Sudachi)を使用しています。
 
 Sudachiで定義されている短・中・長単位の3つの分割単位でNWJCを解析した結果を元に分散表現の学習を行なっています。Sudachiは[version 0.1.1](https://github.com/WorksApplications/Sudachi/releases/tag/v0.1.1)を使用しています。
-
  
 ## データ
 
@@ -68,6 +74,13 @@ Sudachiで定義されている短・中・長単位の3つの分割単位でNWJ
 Copyright (c) 2019 National Institute for Japanese Language and Linguistics and Works Applications Co., Ltd. All rights reserved.
 
 Apache License, Version 2.0のライセンスの下で[国立国語研究所](https://www.ninjal.ac.jp/)と[株式会社ワークスアプリケーションズ](https://www.worksap.co.jp/)によって提供されています。
+
+## Slack
+
+開発者やユーザーの方々が質問したり議論するためのSlackワークスペースを用意しています。
+
+- https://sudachi-dev.slack.com/
+- ([こちら](https://join.slack.com/t/sudachi-dev/shared_invite/enQtMzg2NTI2NjYxNTUyLTMyYmNkZWQ0Y2E5NmQxMTI3ZGM3NDU0NzU4NGE1Y2UwYTVmNTViYjJmNDI0MWZiYTg4ODNmMzgxYTQ3ZmI2OWU)から招待を受けてください)
 
 ## chiVeの引用
 
