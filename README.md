@@ -33,7 +33,7 @@ We have a Slack workspace for developers and users to ask questions and discuss 
 
 ## Citing chiVe
 
-We have published a followin paper on chiVe (in Japanese);
+We have published a following paper about chiVe (in Japanese);
 
 真鍋陽俊, 岡照晃, 海川祥毅, 髙岡一馬, 内田佳孝, 浅原正幸. [複数粒度の分割結果に基づく日本語単語分散表現](https://www.anlp.jp/proceedings/annual_meeting/2019/pdf_dir/P8-5.pdf). 言語処理学会第25回年次大会, 2019.
 
