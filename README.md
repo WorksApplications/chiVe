@@ -6,7 +6,7 @@
 
 Based on the [skip-gram algorithm](https://arxiv.org/abs/1301.3781), we used word2vec ([gensim](https://radimrehurek.com/gensim/)) and [fastText](https://fasttext.cc/) to train  the vectors.
 
-We use [NINJAL Web Japanese Corpus (NWJC)](https://pj.ninjal.ac.jp/corpus_center/nwjc/) from National Institute for Japanese Language and Linguistics which contains around 100 million web page text as a training corpus, and used [Sudachi](https://github.com/WorksApplications/Sudachi) by Works Applications for tokenization.
+We used [NINJAL Web Japanese Corpus (NWJC)](https://pj.ninjal.ac.jp/corpus_center/nwjc/) from National Institute for Japanese Language and Linguistics which contains around 100 million web page text as a training corpus, and used [Sudachi](https://github.com/WorksApplications/Sudachi) by Works Applications for tokenization.
 
 We used Sudachi's multi-granular tokenziation results (short, mid, and named entity) of NWJC text to train word vectors.
 We used Sudachi [version 0.1.1](https://github.com/WorksApplications/Sudachi/releases/tag/v0.1.1).
