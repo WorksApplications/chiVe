@@ -55,7 +55,7 @@ When citing chiVe in papers, books, or services, please use the follow BibTex en
 
 # chiVe (日本語README)
 
-"chiVe" (suda**chi Vector**) は、大規模コーパスと複数粒度分割に基づく日本語単語ベクトルです。
+"chiVe" (suda**chi Vec**tor) は、大規模コーパスと複数粒度分割に基づく日本語単語ベクトルです。
 
 [Skip-gramアルゴリズム](https://arxiv.org/abs/1301.3781)を元に、word2vec （[gensim](https://radimrehurek.com/gensim/)） を使用して単語分散表現を構築しています。
 
