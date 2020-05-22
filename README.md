@@ -34,6 +34,22 @@ The training algorithm is the same for both v1.0 and v1.1.
 
 Sudachi version: [v0.1.1](https://github.com/WorksApplications/Sudachi/releases/tag/v0.1.1) for chiVe 1.0 and [v0.3.0](https://github.com/WorksApplications/Sudachi/releases/tag/v0.3.0) for chiVe1.1.
 
+
+### "A Unit Only" Resources
+
+These files contain only the [SudachiDict](https://github.com/WorksApplications/SudachiDict) A unit words (Not re-training; Simply excluding B unit words, C unit words, and OOV (Out-of-vocabulary) words from the above original resources).
+
+`v1.1 mc90 a-unit-only` is used for the natural language processing tool [spaCy](https://github.com/explosion/spaCy/)'s Japanese models.
+
+
+| Version               | Normalized  | Min Count | Vocab           | Text  | SudachiDict   | Download                                                                                                                                                                            |
+|-----------------------|-------------|-----------|-----------------|-------|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| v1.1 mc5 a-unit-only  | o           |         5 | 322,094 (10.1%) | 1.1GB | 20191030-core | [tar.gz](https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/chive/chive-1.1-mc5-20200318-a-unit-only.tar.gz) (465MB)   |
+| v1.1 mc15 a-unit-only | o           |        15 | 276,866 (19.1%) | 952MB | 20191030-core | [tar.gz](https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/chive/chive-1.1-mc15-20200318-a-unit-only.tar.gz) (400MB) |
+| v1.1 mc30 a-unit-only | o           |        30 | 242,658 (26.7%) | 833MB | 20191030-core | [tar.gz](https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/chive/chive-1.1-mc30-20200318-a-unit-only.tar.gz) (350MB) |
+| v1.1 mc90 a-unit-only | o           |        90 | 189,775 (39.5%) | 652MB | 20191030-core | [tar.gz](https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/chive/chive-1.1-mc90-20200318-a-unit-only.tar.gz) (274MB) |
+
+
 ## Licence
 
 Copyright (c) 2020 National Institute for Japanese Language and Linguistics and Works Applications Co., Ltd. All rights reserved.
@@ -116,6 +132,21 @@ Sudachiで定義されている短・中・長単位の3つの分割単位でNWJ
 「最低頻度」は、コーパス内での出現回数での足切り基準（[gensim](https://radimrehurek.com/gensim/models/word2vec.html)での `min_count` ）です。
 
 形態素解析器Sudachiのバージョンは、chiVe 1.0では [v0.1.1](https://github.com/WorksApplications/Sudachi/releases/tag/v0.1.1) 、chiVe 1.1では [v0.3.0](https://github.com/WorksApplications/Sudachi/releases/tag/v0.3.0) を使用しています。
+
+### 「A単位語のみ」の資源
+
+[Sudachi辞書](https://github.com/WorksApplications/SudachiDict)にあるA単位語のみを含む資源です（A単位語のみでの再学習ではなく、上にある元資源から、B単位語、C単位語、OOV語（Out-of-vocabulary, 辞書にない語）を除いたものです）。
+
+`v1.1 mc90 a-unit-only` が、自然言語処理ツール [spaCy](https://github.com/explosion/spaCy/) の日本語モデルに使われています。
+
+
+|版     |正規化|最低頻度|語彙数      |テキスト|Sudachi辞書            |ダウンロード  |
+|-----------------------|-------------|-----------|-----------------|-------|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| v1.1 mc5 a-unit-only  | o           |         5 | 322,094 (10.1%) | 1.1GB | 20191030-core | [tar.gz](https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/chive/chive-1.1-mc5-20200318-a-unit-only.tar.gz) (465MB)   |
+| v1.1 mc15 a-unit-only | o           |        15 | 276,866 (19.1%) | 952MB | 20191030-core | [tar.gz](https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/chive/chive-1.1-mc15-20200318-a-unit-only.tar.gz) (400MB) |
+| v1.1 mc30 a-unit-only | o           |        30 | 242,658 (26.7%) | 833MB | 20191030-core | [tar.gz](https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/chive/chive-1.1-mc30-20200318-a-unit-only.tar.gz) (350MB) |
+| v1.1 mc90 a-unit-only | o           |        90 | 189,775 (39.5%) | 652MB | 20191030-core | [tar.gz](https://object-storage.tyo2.conoha.io/v1/nc_2520839e1f9641b08211a5c85243124a/chive/chive-1.1-mc90-20200318-a-unit-only.tar.gz) (274MB) |
+
 
 ## ライセンス
 
