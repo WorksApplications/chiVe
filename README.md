@@ -69,7 +69,7 @@ We have a Slack workspace for developers and users to ask questions and discuss 
 We have published a following paper about chiVe;
 
 - 真鍋陽俊, 岡照晃, 海川祥毅, 髙岡一馬, 内田佳孝, 浅原正幸. [複数粒度の分割結果に基づく日本語単語分散表現](https://www.anlp.jp/proceedings/annual_meeting/2019/pdf_dir/P8-5.pdf) *(Japanese Word Embedding based on Multi-granular Tokenization Results, in Japanese)*. 言語処理学会第25回年次大会, 2019.
-- 河村宗一郎, 久本空海, 真鍋陽俊, 高岡一馬, 内田佳孝, 岡照晃, 浅原正幸. [chiVe 2.0: SudachiとNWJCを用いた実用的な日本語単語ベクトルの実現へ向けて](https://www.anlp.jp/nlp2020/) *(chiVe 2.0: Towards Prctical Japanese Embedding wiht Sudachi and NWJC, in Japanese)*. 言語処理学会第26回年次大会, 2020.
+- 河村宗一郎, 久本空海, 真鍋陽俊, 高岡一馬, 内田佳孝, 岡照晃, 浅原正幸. [chiVe 2.0: SudachiとNWJCを用いた実用的な日本語単語ベクトルの実現へ向けて](https://www.anlp.jp/proceedings/annual_meeting/2020/pdf_dir/P6-16.pdf) *(chiVe 2.0: Towards Prctical Japanese Embedding wiht Sudachi and NWJC, in Japanese)*. 言語処理学会第26回年次大会, 2020.
 
 When citing chiVe in papers, books, or services, please use the follow BibTex entries;
 
@@ -166,7 +166,7 @@ Copyright (c) 2020 National Institute for Japanese Language and Linguistics and 
 chiVeについて、論文を発表しています;
 
 - 真鍋陽俊, 岡照晃, 海川祥毅, 髙岡一馬, 内田佳孝, 浅原正幸. [複数粒度の分割結果に基づく日本語単語分散表現](https://www.anlp.jp/proceedings/annual_meeting/2019/pdf_dir/P8-5.pdf). 言語処理学会第25回年次大会, 2019.
-- 河村宗一郎, 久本空海, 真鍋陽俊, 高岡一馬, 内田佳孝, 岡照晃, 浅原正幸. [chiVe 2.0: SudachiとNWJCを用いた実用的な日本語単語ベクトルの実現へ向けて](https://www.anlp.jp/nlp2020/). 言語処理学会第26回年次大会, 2020.
+- 河村宗一郎, 久本空海, 真鍋陽俊, 高岡一馬, 内田佳孝, 岡照晃, 浅原正幸. [chiVe 2.0: SudachiとNWJCを用いた実用的な日本語単語ベクトルの実現へ向けて](https://www.anlp.jp/proceedings/annual_meeting/2020/pdf_dir/P6-16.pdf). 言語処理学会第26回年次大会, 2020.
 
 chiVeを論文や書籍、サービスなどで引用される際には、以下のBibTexをご利用ください。
 
