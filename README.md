@@ -185,7 +185,7 @@ We have published a following paper about chiVe;
 
 - 真鍋陽俊, 岡照晃, 海川祥毅, 髙岡一馬, 内田佳孝, 浅原正幸. [複数粒度の分割結果に基づく日本語単語分散表現](https://www.anlp.jp/proceedings/annual_meeting/2019/pdf_dir/P8-5.pdf) *(Japanese Word Embedding based on Multi-granular Tokenization Results, in Japanese)*. 言語処理学会第25回年次大会, 2019.
 - 河村宗一郎, 久本空海, 真鍋陽俊, 高岡一馬, 内田佳孝, 岡照晃, 浅原正幸. [chiVe 2.0: SudachiとNWJCを用いた実用的な日本語単語ベクトルの実現へ向けて](https://www.anlp.jp/proceedings/annual_meeting/2020/pdf_dir/P6-16.pdf) *(chiVe 2.0: Towards Prctical Japanese Embedding wiht Sudachi and NWJC, in Japanese)*. 言語処理学会第26回年次大会, 2020.
-- 久本空海, 山村崇, 勝田哲弘, 竹林佑斗, 髙岡一馬, 内田佳孝, 岡照晃, 浅原正幸. [chiVe: 製品利用可能な日本語単語ベクトル資源の実現へ向けて](https://www.ieice.org/ken/paper/20200910U1zQ/) *(chiVe: Towards Industrial-strength Japanese Word Vector Resources, in Japanese)*. 第16回テキストアナリティクス・シンポジウム, 2020. ([slides]((https://speakerdeck.com/sorami/chive-zhi-pin-li-yong-ke-neng-nari-ben-yu-dan-yu-bekutoruzi-yuan-falseshi-xian-hexiang-kete)))
+- 久本空海, 山村崇, 勝田哲弘, 竹林佑斗, 髙岡一馬, 内田佳孝, 岡照晃, 浅原正幸. [chiVe: 製品利用可能な日本語単語ベクトル資源の実現へ向けて](https://www.ieice.org/ken/paper/20200910U1zQ/) *(chiVe: Towards Industrial-strength Japanese Word Vector Resources, in Japanese)*. 第16回テキストアナリティクス・シンポジウム, 2020. ([slides](https://speakerdeck.com/sorami/chive-zhi-pin-li-yong-ke-neng-nari-ben-yu-dan-yu-bekutoruzi-yuan-falseshi-xian-hexiang-kete))
 
 When citing chiVe in papers, books, or services, please use the follow BibTex entries (Generally, please cite the first paper, (Manabe+ 2019));
 
