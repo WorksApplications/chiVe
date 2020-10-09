@@ -28,7 +28,7 @@ Data are generously hosted by AWS with their [Oepn Data Sponsorship Program](htt
 | v1.1 mc90 | o      | 90       | 480,443   | v0.3.0 | 20191030-core         | 1.6GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.1-mc90.tar.gz)) | 0.6GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.1-mc90_gensim.tar.gz)) | 0.8GB ([.magnitude](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.1-mc90.magnitude)) |
 | v1.0 mc5  | x      | 5        | 3,644,628 | v0.1.1 | 0.1.1-dictionary-full | 12GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.0-mc5.tar.gz))   | 4.1GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.0-mc5_gensim.tar.gz))  | 6.3GB ([.magnitude](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.0-mc5.magnitude))  |
 
-The training algorithm is the same for both v1.0 and v1.1.
+The training algorithm is the same for v1.0, v1.1, and v1.2.
 
 All vectors have 300 dimensions.
 
@@ -256,7 +256,7 @@ SudachiDictとchiVeのデータは、AWSの[Oepn Data Sponsorship Program](https
 | v1.1 mc90 | o      | 90       | 480,443   | v0.3.0 | 20191030-core         | 1.6GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.1-mc90.tar.gz)) | 0.6GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.1-mc90_gensim.tar.gz)) | 0.8GB ([.magnitude](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.1-mc90.magnitude)) |
 | v1.0 mc5  | x      | 5        | 3,644,628 | v0.1.1 | 0.1.1-dictionary-full | 12GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.0-mc5.tar.gz))   | 4.1GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.0-mc5_gensim.tar.gz))  | 6.3GB ([.magnitude](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.0-mc5.magnitude))  |
 
-学習アルゴリズム自体はv1.0とv1.1で変わりません。
+学習アルゴリズム自体はv1.0、v1.1、v1.2で変わりません。
 
 すべて、300次元のベクトルです。
 
