@@ -14,7 +14,7 @@ We used Sudachi's multi-granular tokenziation results (short, mid, and named ent
 
 ## Data
 
-Data are generously hosted by AWS with their [Oepn Data Sponsorship Program](https://registry.opendata.aws/sudachi/).
+Data are generously hosted by AWS with their [Open Data Sponsorship Program](https://registry.opendata.aws/sudachi/).
 
 | Version   | Normalized | Min Count | Vocab     | Sudachi | SudachiDict           | Text                                                                                          | [gensim](https://radimrehurek.com/gensim/)                                                           | [Magnitude](https://github.com/plasticityai/magnitude)                                               |
 | --------- | ---------- | --------- | --------- | ------- | --------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
