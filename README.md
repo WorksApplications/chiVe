@@ -242,7 +242,7 @@ Sudachiで定義されている短・中・長単位の3つの分割単位でNWJ
 
 ## データ
 
-SudachiDictとchiVeのデータは、AWSの[Oepn Data Sponsorship Program](https://registry.opendata.aws/sudachi/)によりホストしていただいています。
+SudachiDictとchiVeのデータは、AWSの[Open Data Sponsorship Program](https://registry.opendata.aws/sudachi/)によりホストしていただいています。
 
 | 版        | 正規化 | 最低頻度 | 語彙数    | Sudachi | Sudachi辞書           | テキスト                                                                                      | [gensim](https://radimrehurek.com/gensim/)                                                           | [Magnitude](https://github.com/plasticityai/magnitude)                                               |
 | --------- | ------ | -------- | --------- | ------- | --------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
