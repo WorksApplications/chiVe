@@ -1,23 +1,23 @@
-# chiVe: SudachiとNWJCによる日本語単語ベクトル
+# chiVe: Japanese Word Embedding with Sudachi & NWJC
 
-[English README](README_en.md)
+[日本語 README](README.md)
 
-## 概要
+## Abstract
 
-"chiVe" (チャイブ, Suda**chi Vec**tor) は、大規模コーパスと複数粒度分割に基づく日本語単語ベクトルです。
+"chiVe" (Suda**chi Ve**ctor) is a Japanese pre-trained word embedding resource using large-scale corpus and multi-granular tokenization.
 
-[Skip-gramアルゴリズム](https://arxiv.org/abs/1301.3781)を元に、word2vec （[gensim](https://radimrehurek.com/gensim/)） を使用して単語分散表現を構築しています。
+Based on the [skip-gram algorithm](https://arxiv.org/abs/1301.3781), we used word2vec ([gensim](https://radimrehurek.com/gensim/)) to train the vectors.
 
-学習には約1億のウェブページ文章を含む国立国語研究所の[日本語ウェブコーパス（NWJC）](https://masayu-a.github.io/NWJC/)を採用し、分かち書きにはワークスアプリケーションズの形態素解析器[Sudachi](https://github.com/WorksApplications/Sudachi)を使用しています。
+We used [NINJAL Web Japanese Corpus (NWJC)](https://masayu-a.github.io/NWJC/) from National Institute for Japanese Language and Linguistics which contains around 100 million web page text as a training corpus, and used [Sudachi](https://github.com/WorksApplications/Sudachi) by Works Applications for tokenization.
 
-Sudachiで定義されている短・中・長単位の3つの分割単位でNWJCを解析した結果を元に分散表現の学習を行なっています。
+We used Sudachi's multi-granular tokenziation results (short, mid, and named entity) of NWJC text to train word vectors.
 
-## データ
+## Data
 
-SudachiDictとchiVeのデータは、AWSの[Open Data Sponsorship Program](https://registry.opendata.aws/sudachi/)によりホストしていただいています。
+Data are generously hosted by AWS with their [Open Data Sponsorship Program](https://registry.opendata.aws/sudachi/).
 
-| 版        | 正規化 | 最低頻度 | 語彙数    | Sudachi | Sudachi辞書           | テキスト                                                                                      | [gensim](https://radimrehurek.com/gensim/)                                                           | [Magnitude](https://github.com/plasticityai/magnitude)                                               |
-| --------- | ------ | -------- | --------- | ------- | --------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Version   | Normalized | Min Count | Vocab     | Sudachi | SudachiDict           | Text                                                                                          | [gensim](https://radimrehurek.com/gensim/)                                                           | [Magnitude](https://github.com/plasticityai/magnitude)                                               |
+| --------- | ---------- | --------- | --------- | ------- | --------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | v1.2 mc5  | o      | 5        | 3,197,456 | v0.4.3 | 20200722-core         | 9.2GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.2-mc5.tar.gz))  | 3.8GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.2-mc5_gensim.tar.gz))  | 5.5GB ([.magnitude](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.2-mc5.magnitude))  |
 | v1.2 mc15 | o      | 15       | 1,454,280 | v0.4.3 | 20200722-core         | 5.0GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.2-mc15.tar.gz)) | 1.7GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.2-mc15_gensim.tar.gz)) | 2.4GB ([.magnitude](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.2-mc15.magnitude)) |
 | v1.2 mc30 | o      | 30       | 912,550   | v0.4.3 | 20200722-core         | 3.1GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.2-mc30.tar.gz)) | 1.1GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.2-mc30_gensim.tar.gz)) | 1.5GB ([.magnitude](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.2-mc30.magnitude)) |
@@ -28,22 +28,22 @@ SudachiDictとchiVeのデータは、AWSの[Open Data Sponsorship Program](https
 | v1.1 mc90 | o      | 90       | 480,443   | v0.3.0 | 20191030-core         | 1.6GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.1-mc90.tar.gz)) | 0.6GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.1-mc90_gensim.tar.gz)) | 0.8GB ([.magnitude](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.1-mc90.magnitude)) |
 | v1.0 mc5  | x      | 5        | 3,644,628 | v0.1.1 | 0.1.1-dictionary-full | 12GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.0-mc5.tar.gz))   | 4.1GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.0-mc5_gensim.tar.gz))  | 6.3GB ([.magnitude](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.0-mc5.magnitude))  |
 
-学習アルゴリズム自体はv1.0、v1.1、v1.2で変わりません。
+The training algorithm is the same for v1.0, v1.1, and v1.2.
 
-すべて、300次元のベクトルです。
+All vectors have 300 dimensions.
 
-「正規化」は、形態素解析器Sudachiによる表記統制です。例えば `空き缶`, `空缶`, `空き罐`, `空罐`, `空きカン`, `空きかん` はすべて正規化表記 `空き缶` に統制されます。
+"Normalized" indicates if the text is normalized using the tokenizer Sudachi. For example, words `空き缶`, `空缶`, `空き罐`, `空罐`, `空きカン`, `空きかん` will all be normalized to `空き缶`.
 
-「最低頻度」は、コーパス内での出現回数での足切り基準（[gensim](https://radimrehurek.com/gensim/models/word2vec.html)での `min_count` ）です。
+"Min Count" indicates the number of minimum appearance count in the training corpus (`min_count` in [gensim](https://radimrehurek.com/gensim/models/word2vec.html)).
 
-### 「A単位語のみ」の資源
+### "A Unit Only" Resources
 
-[Sudachi辞書](https://github.com/WorksApplications/SudachiDict)にあるA単位語のみを含む資源です（A単位語のみでの再学習ではなく、上にある元資源から、B単位語、C単位語、OOV語（Out-of-vocabulary, 辞書にない語）を除いたものです）。
+These files contain only the [SudachiDict](https://github.com/WorksApplications/SudachiDict) A unit words (Not re-training; Simply excluding B unit words, C unit words, and OOV (Out-of-vocabulary) words from the above original resources).
 
-`v1.1 mc90 aunit` が、自然言語処理ツール [spaCy](https://github.com/explosion/spaCy/) の日本語モデルに使われています。
+`v1.1 mc90 aunit` is used for the natural language processing tool [spaCy](https://github.com/explosion/spaCy/)'s Japanese models.
 
 
-| 版              | 語彙数          | テキスト                                                                                            | [gensim](https://radimrehurek.com/gensim/)                                                                 | [Magnitude](https://github.com/plasticityai/magnitude)                                                     |
+| Version         | Vocab           | Text                                                                                                | [gensim](https://radimrehurek.com/gensim/)                                                                 | [Magnitude](https://github.com/plasticityai/magnitude)                                                     |
 | --------------- | --------------- | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | v1.1 mc5 aunit  | 322,094 (10.1%) | 1.1GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.1-mc5-aunit.tar.gz))  | 0.4GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.1-mc5-aunit_gensim.tar.gz))  | 0.5GB ([.magnitude](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.1-mc5-aunit.magnitude))  |
 | v1.1 mc15 aunit | 276,866 (19.1%) | 1.0GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.1-mc15-aunit.tar.gz)) | 0.3GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.1-mc15-aunit_gensim.tar.gz)) | 0.4GB ([.magnitude](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.1-mc15-aunit.magnitude)) |
@@ -51,14 +51,15 @@ SudachiDictとchiVeのデータは、AWSの[Open Data Sponsorship Program](https
 | v1.1 mc90 aunit | 189,775 (39.5%) | 0.7GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.1-mc90-aunit.tar.gz)) | 0.2GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.1-mc90-aunit_gensim.tar.gz)) | 0.3GB ([.magnitude](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.1-mc90-aunit.magnitude)) |
 
 
-### 追加学習用のフルモデル
+### Continue Training chiVe
 
-chiVeは、各ドメイン（分野）に合わせたデータで追加学習させられます。
-chiVeは、追加学習なしでも利用できますが、追加学習することでそのドメイン（分野）でのタスクの性能改善が期待できます。
+Although chiVe can be used as it is, you can continue to train chiVe with your own data to improve the performance of your tasks.
 
-chiVeを追加学習するためには、フルモデルを使用してください。詳しい使用方法は、[チュートリアル](docs/continue-training.md)をご覧ください。
+A full model is required for further training.
+See the [tutorial](docs/continue-training.md) for details on how to use it.
 
-| 版        | [gensim](https://radimrehurek.com/gensim/) (full)                                                         |
+
+| Version   | [gensim](https://radimrehurek.com/gensim/) (full)                                                         |
 | --------- | --------------------------------------------------------------------------------------------------------- |
 | v1.2 mc5  | 6.7GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.2-mc5_gensim-full.tar.gz))  |
 | v1.2 mc15 | 3.0GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.2-mc15_gensim-full.tar.gz)) |
@@ -66,16 +67,15 @@ chiVeを追加学習するためには、フルモデルを使用してくださ
 | v1.2 mc90 | 1.0GB ([tar.gz](https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.2-mc90_gensim-full.tar.gz)) |
 
 
-## 利用方法
+## Usage
 
-「テキスト」「gensim」「Magnitude」という3つのフォーマットでデータを公開しています。
+We provide data in 3 formats, namely, Text, gensim, and Magitude.
 
+### Text
 
-### テキスト
+Data in plain text (original word2vec C format).
 
-プレーンテキスト形式のデータ（オリジナルのword2vec Cフォーマット）です。
-
-```
+```txt:chive-1.1-mc90/chive-1.1-mc90.txt 
 480443 300
 の -0.08274004 -0.091033645 -0.08744463 -0.14393683 -0.053159036 ...
 、 -0.014216528 -0.1027064 -0.07763326 -0.16008057 -0.16116066 ...
@@ -85,14 +85,14 @@ chiVeを追加学習するためには、フルモデルを使用してくださ
 
 ### gensim
 
-ライブラリ[gensim](https://radimrehurek.com/gensim/)のための、[KeyedVectors](https://radimrehurek.com/gensim/models/keyedvectors.html)形式のデータです。
+Data for the library [gensim](https://radimrehurek.com/gensim/), in [KeyedVectors](https://radimrehurek.com/gensim/models/keyedvectors.html) format.
 
 ```py
 import gensim
 
 vectors = gensim.models.KeyedVectors.load("./chive-1.1-mc90_gensim/chive-1.1-mc90.kv")
 
-"すだち" in vectors # False, v1.1では正規化されているため
+"すだち" in vectors # False, because in v1.1 all vocabs are normalized
 "酢橘" in vectors # True
 
 vectors["酢橘"]
@@ -118,17 +118,17 @@ vectors.most_similar(positive=["阿波", "高知"], negative=["徳島"], topn=5)
 
 ### Magnitude
 
-ライブラリ[Magnitude](https://github.com/plasticityai/magnitude)形式のデータです。デフォルトのパラメーターで変換されています（高度な未知語サポート有り、近似最近傍インデックス無し。Magnitudeが公開しているモデルの`Medium`相当）。
+Data converted for the library [Magnitude](https://github.com/plasticityai/magnitude), using the default parameters, i.e., includes advanced out-of-vocabulary key support using subword information, but does not include approximate nearest neighbours index (equivalent to their `Medium`).
 
 ```py
 from pymagnitude import Magnitude
 
 vectors = Magnitude("chive1.1-mc90.magnitude")
 
-"すだち" in vectors # False, v1.1では正規化されているため
+"すだち" in vectors # False, because in v1.1 all vocabs are normalized
 "酢橘" in vectors # True
 
-vectors.query("すだち") # Magnitudeによるサブワードを使った未知語サポートによる
+vectors.query("すだち") # via Magnitude's OOV feature suing subword information
 # array([ 0.03974148,  0.11290773,  0.01493122, -0.05296252,  0.12616251, ...])
 
 vectors.most_similar("すだち", topn=5)
@@ -166,49 +166,47 @@ vectors.most_similar_cosmul(positive=["阿波", "高知"], negative=["徳島"], 
 # ('伊予', 0.80250806)]
 ```
 
-ライブラリを使っての、ダウンロード、リモートでのロード、HTTP上のリモートでのストリームも可能です。
-
+You can also download, remote load, or remote stream over HTTP.
 ```py
 from pymagnitude import Magnitude, MagnitudeUtils
 
-# ダウンロード
+# Download
 vectors = Magnitude(MagnitudeUtils.download_model("chive-1.1-mc90-aunit", remote_path="https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/"))
- # デフォルトのダウンロード先: `~/.magnitude/`
- # ファイルが既にダウンロードされている場合は、再度ダウンロードしない
- # 引数 `download_dir` でローカルのダウンロード先を変更できる
+ # default download dir: `~/.magnitude/`
+ # If the file already downloaded, it won't be downloaded again
+ # You can change the download dir using the `download_dir` argument
 
-# リモートでのロード
+# Remote Loading
 vectors = Magnitude("https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.1-mc90-aunit.magnitude")
 
-# HTTP上のリモートでのストリーム
+# Remote Streaming over HTTP
 vectors = Magnitude("https://sudachi.s3-ap-northeast-1.amazonaws.com/chive/chive-1.1-mc90-aunit.magnitude", stream=True)
-vectors.query("徳島") # ローカルにファイルをダウンロードせず、ベクトルをすばやく取得
+vectors.query("徳島") # Returns the vector quickly, even with no local file downloaded
 ```
 
-
-## ライセンス
+## Licence
 
 Copyright (c) 2020 National Institute for Japanese Language and Linguistics and Works Applications Co., Ltd. All rights reserved.
 
-[Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)の下で[国立国語研究所](https://www.ninjal.ac.jp/)と[株式会社ワークスアプリケーションズ](https://www.worksap.co.jp/)によって提供されています。
+"chiVe" is distributed by [National Institute for Japanese Langauge and Linguistics](https://www.ninjal.ac.jp/) and [Works Applications Co.,Ltd.](https://www.worksap.co.jp/) under [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
 ## Slack
 
-開発者やユーザーの方々が質問したり議論するためのSlackワークスペースを用意しています。
+We have a Slack workspace for developers and users to ask questions and discuss a variety of topics.
 
 - https://sudachi-dev.slack.com/
-- ([こちら](https://join.slack.com/t/sudachi-dev/shared_invite/enQtMzg2NTI2NjYxNTUyLTMyYmNkZWQ0Y2E5NmQxMTI3ZGM3NDU0NzU4NGE1Y2UwYTVmNTViYjJmNDI0MWZiYTg4ODNmMzgxYTQ3ZmI2OWU)から招待を受けてください)
-
-## chiVeの引用
-
-chiVeについて、論文を発表しています;
-
-- 真鍋陽俊, 岡照晃, 海川祥毅, 髙岡一馬, 内田佳孝, 浅原正幸. [複数粒度の分割結果に基づく日本語単語分散表現](https://www.anlp.jp/proceedings/annual_meeting/2019/pdf_dir/P8-5.pdf). 言語処理学会第25回年次大会, 2019.
-- 河村宗一郎, 久本空海, 真鍋陽俊, 高岡一馬, 内田佳孝, 岡照晃, 浅原正幸. [chiVe 2.0: SudachiとNWJCを用いた実用的な日本語単語ベクトルの実現へ向けて](https://www.anlp.jp/proceedings/annual_meeting/2020/pdf_dir/P6-16.pdf). 言語処理学会第26回年次大会, 2020.
-- 久本空海, 山村崇, 勝田哲弘, 竹林佑斗, 髙岡一馬, 内田佳孝, 岡照晃, 浅原正幸. [chiVe: 製品利用可能な日本語単語ベクトル資源の実現へ向けて](https://www.ieice.org/ken/paper/20200910U1zQ/). 第16回テキストアナリティクス・シンポジウム, 2020. （[スライド](https://speakerdeck.com/sorami/chive-zhi-pin-li-yong-ke-neng-nari-ben-yu-dan-yu-bekutoruzi-yuan-falseshi-xian-hexiang-kete)）
+- (Please get an invite from [here](https://join.slack.com/t/sudachi-dev/shared_invite/enQtMzg2NTI2NjYxNTUyLTMyYmNkZWQ0Y2E5NmQxMTI3ZGM3NDU0NzU4NGE1Y2UwYTVmNTViYjJmNDI0MWZiYTg4ODNmMzgxYTQ3ZmI2OWU))
 
 
-chiVeを論文や書籍、サービスなどで引用される際には、以下のBibTexをご利用ください（基本的には、1本目の(真鍋+ 2019)を引用してください）。
+## Citing chiVe
+
+We have published a following paper about chiVe;
+
+- 真鍋陽俊, 岡照晃, 海川祥毅, 髙岡一馬, 内田佳孝, 浅原正幸. [複数粒度の分割結果に基づく日本語単語分散表現](https://www.anlp.jp/proceedings/annual_meeting/2019/pdf_dir/P8-5.pdf) *(Japanese Word Embedding based on Multi-granular Tokenization Results, in Japanese)*. 言語処理学会第25回年次大会, 2019.
+- 河村宗一郎, 久本空海, 真鍋陽俊, 高岡一馬, 内田佳孝, 岡照晃, 浅原正幸. [chiVe 2.0: SudachiとNWJCを用いた実用的な日本語単語ベクトルの実現へ向けて](https://www.anlp.jp/proceedings/annual_meeting/2020/pdf_dir/P6-16.pdf) *(chiVe 2.0: Towards Prctical Japanese Embedding wiht Sudachi and NWJC, in Japanese)*. 言語処理学会第26回年次大会, 2020.
+- 久本空海, 山村崇, 勝田哲弘, 竹林佑斗, 髙岡一馬, 内田佳孝, 岡照晃, 浅原正幸. [chiVe: 製品利用可能な日本語単語ベクトル資源の実現へ向けて](https://www.ieice.org/ken/paper/20200910U1zQ/) *(chiVe: Towards Industrial-strength Japanese Word Vector Resources, in Japanese)*. 第16回テキストアナリティクス・シンポジウム, 2020. ([slides](https://speakerdeck.com/sorami/chive-zhi-pin-li-yong-ke-neng-nari-ben-yu-dan-yu-bekutoruzi-yuan-falseshi-xian-hexiang-kete))
+
+When citing chiVe in papers, books, or services, please use the follow BibTex entries (Generally, please cite the first paper, (Manabe+ 2019));
 
 ```
 @INPROCEEDINGS{manabe2019chive,
