@@ -53,6 +53,10 @@ create_training_corpus('corpus.txt', 'corpus.tok.txt')
 
 学習パラメータの詳細は、[gensim.models.word2vec.Word2Vec.train](https://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec.train)を参照してください。
 
+```bash
+$ pip install gensim
+```
+
 ```py
 from gensim.models.word2vec import LineSentence
 from gensim.models import Word2Vec
