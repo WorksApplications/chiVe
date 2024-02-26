@@ -33,10 +33,28 @@ Skippableness is judged based on the existance of the output file and its line c
 
 Use `--mode` to specify Sudachi split mode to use. e.g. `--mode AC` to use only mode A and C.
 
+example:
+
+```bash
+ls -A data/raw_corpus/*.txt | xargs -L 1 -I{} -P 20 \
+    python prepare_corpus.py --skip-existing \
+        --input {} --output data/corpus/
+```
+
 ### 2. Training
 
 Use `train_chive.py` to run training using gensim word2vec class.
 `--input` should be set the output directory of `prepare_corpus.py`.
+
+example:
+
+```bash
+python train_chive.py \
+    --input data/corpus/ --output model/full/ \
+    --epochs 15 --min-count 90 \
+    --save-epochs 3 --keep-ckpt 5 \
+    --worker 16
+```
 
 chiVe ~v1.3 are trained 15 epochs with following parameters.
 
@@ -62,4 +80,11 @@ Note that resuming a training is not the feature of gensim, and may contain some
 Trained (full) model contains values for update model parameters, that is not neccessary for querying.
 Use `convert_model_format.py` to generate text and `gensim.KeyedVectors` format for the distribution.
 
-- [magnitude](https://github.com/plasticityai/magnitude) seems to be not maintained, so we stop to distribute in that format from chiVe v1.3.
+example:
+
+```bash
+python convert_model_format.py \
+    --input model/full/ --output model/release/
+```
+
+[magnitude](https://github.com/plasticityai/magnitude) does not seems to be maintained, so we stop to distribute in that format from chiVe v1.3.
