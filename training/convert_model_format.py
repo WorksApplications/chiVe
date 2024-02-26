@@ -1,13 +1,17 @@
 import argparse
-from logging import INFO, basicConfig, getLogger
+import logging
 from pathlib import Path
 
 from gensim.models import Word2Vec
 
 
-basicConfig(
-    format='%(levelname)s %(asctime)s [%(module)s:%(funcName)s:%(lineno)s] %(message)s', level=INFO)
-logger = getLogger(__name__)
+logging.basicConfig(
+    style="{",
+    format='{levelname} {asctime} [{module}:{funcName}:{lineno}] {message}',
+    datefmt="%m/%d/%Y %H:%M:%S",
+    level=logging.INFO,
+)
+logger = logging.getLogger(__name__)
 
 
 def parse_args():

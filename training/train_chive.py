@@ -1,7 +1,7 @@
 import argparse
 from dataclasses import dataclass
 import json
-from logging import INFO, basicConfig, getLogger
+import logging
 from pathlib import Path
 import time
 
@@ -10,9 +10,13 @@ from gensim.models.word2vec import LineSentence, PathLineSentences
 from gensim.models.callbacks import CallbackAny2Vec
 
 
-basicConfig(
-    format='%(levelname)s %(asctime)s [%(module)s:%(funcName)s:%(lineno)s] %(message)s', level=INFO)
-logger = getLogger(__name__)
+logging.basicConfig(
+    style="{",
+    format='{levelname} {asctime} [{module}:{funcName}:{lineno}] {message}',
+    datefmt="%m/%d/%Y %H:%M:%S",
+    level=logging.INFO,
+)
+logger = logging.getLogger(__name__)
 
 CHIVE_VERSION = "1.3"
 
