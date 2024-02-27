@@ -7,10 +7,10 @@ See following paper for the detail.
 ## Setup
 
 Download datasets.
-The default task setup files (`resources/**/*.yaml`) assume datasets are located under `data/`, otherwise you need to modify it.
+The default task setting files (`resources/**/*.yaml`) assume datasets are located under `data/`, otherwise you need to modify it.
 
-Download word vectors, and set the path in the vec setup file (`resources/vec/*.yaml`).
-The default vec setup file assumes to use `gensim.KeyedVector` format.
+Download word vectors, and set the path in the vec setting file (`resources/vec/*.yaml`).
+The default vec setting assumes to use `gensim.KeyedVector` format.
 
 Install modules by `pip install -r requirements.txt`.
 
@@ -75,7 +75,12 @@ python run_docclf.py \
 | v1.3 mc30 | 0.496             | 0.626             | 0.318     | 0.459    | 0.354     | 0.250    | 0.859+1.23e-4  |
 | v1.3 mc90 | 0.493             | 0.622             | 0.324     | 0.460    | 0.344     | 0.261    | 0.857+1.55e-4  |
 |           |                   |                   |           |          |           |          |                |
-| v1.2 mc5  |                   |                   |           |          |           |          |                |
-| v1.2 mc15 |                   |                   |           |          |           |          |                |
-| v1.2 mc30 |                   |                   |           |          |           |          |                |
+| v1.2 mc5  | 0.520             | 0.633             | 0.316     | 0.466    | 0.355     | 0.297    | 0.865+0.436e-4 |
+| v1.2 mc15 | 0.513             | 0.629             | 0.315     | 0.461    | 0.353     | 0.294    | 0.862+0.710e-4 |
+| v1.2 mc30 | 0.515             | 0.631             | 0.311     | 0.458    | 0.354     | 0.289    | 0.860+0.546e-4 |
 | v1.2 mc90 | 0.512             | 0.627             | 0.307     | 0.463    | 0.345     | 0.281    | 0.861+0.778e-4 |
+
+## NOTE
+
+- Current implementation uses zero-vector for OOV words and cosine-similarity with zero-vector is 1.0.
+  This may affect the evaluation result.
