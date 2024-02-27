@@ -125,7 +125,7 @@ class CheckpointHandler():
 
     def ckpt_filepath(self, epoch: int) -> Path:
         """generate a path to the ckpt file with given epoch"""
-        filename = f"chiVe-{self.version}-mc{self.min_count}_epoch{epoch}.bin"
+        filename = f"chive-{self.version}-mc{self.min_count}_epoch{epoch}.bin"
         return self.output_dir / filename
 
     def save_ckpt(self, epoch: int, save_func):
