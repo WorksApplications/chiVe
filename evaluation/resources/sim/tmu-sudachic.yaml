@@ -1,5 +1,5 @@
 name: "tmu"
-data-path: "/home/jovyan/jaword-embedding-evaluator/data/JapaneseWordSimilarityDataset"
+data-path: "./data/JapaneseWordSimilarityDataset"
 process:
   use-tokenizer: True
   tokenizer:
@@ -7,3 +7,4 @@ process:
     others:
       mode: "C"
       dic-name:
+      form: "normalized" # "normalized" or "surface"

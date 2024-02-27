@@ -2,34 +2,33 @@
 import argparse
 from datetime import datetime
 import logging
-from pathlib2 import Path
-from sys import argv
+from pathlib import Path
 import yaml
 
 from dataset.pairwise import build_pairwise_similarity_datasets
 from eval.evaluator import W2VSimilarityEvaluator
 from models.w2v import build_gensim_w2v, build_w2v_api
 
-logger = logging.getLogger(argv[0])
+
+logging.basicConfig(
+    style="{",
+    format='{levelname} {asctime} [{module}:{funcName}:{lineno}] {message}',
+    datefmt="%m-%d-%Y %H:%M:%S",
+    level=logging.INFO,
+)
+logger = logging.getLogger(__name__)
 
 
-def run_wordsim(vconfig_path, tconfig_path, log_path=None):
-    # setup logger
-    if log_path == None:
-        log_path = datetime.now().strftime('%Y%m%d_%H:%M')
-    logging.basicConfig(level=logging.INFO)
-    file_handler = logging.FileHandler(log_path)
-    fmt = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-    file_handler.setFormatter(fmt)
+def add_file_handler(logfile: Path) -> None:
+    file_handler = logging.FileHandler(logfile)
     logger.addHandler(file_handler)
+    return
 
-    logger.info("Arguments...")
-    for arg, val in sorted(vars(args).items()):
-        logger.info("{}: {}".format(arg, val))
 
+def run_wordsim(vconfig_path, tconfig_path):
     with open(vconfig_path) as fv, open(tconfig_path) as ft:
-        vec_config = yaml.load(fv)
-        task_config = yaml.load(ft)
+        vec_config = yaml.load(fv, Loader=yaml.CLoader)
+        task_config = yaml.load(ft, Loader=yaml.CLoader)
     logger.info("vector configulatation: {}".format(vec_config))
     logger.info("task configulatation: {}".format(task_config))
 
@@ -56,15 +55,26 @@ def run_wordsim(vconfig_path, tconfig_path, log_path=None):
     logger.info("Results...")
     for (k, v) in name2score.items():
         logger.info("{}: {}".format(k, v))
-    logger.info("DOne")
-
+    logger.info("Done")
+    return
 
 
 if __name__ == '__main__':
-    p = argparse.ArgumentParser("Word similarity Evaluation")
-    p.add_argument("--vconfig", type=str, help="Vector Configulation file path")
-    p.add_argument("--tconfig", type=str, help="Task Configulation file path")
-    p.add_argument("--log", type=str, help="Log path")
+    p = argparse.ArgumentParser("Document classification Evaluation")
+    p.add_argument("--vconfig", type=Path,
+                   help="Vector Configulation file path")
+    p.add_argument("--tconfig", type=Path, help="Task Configulation file path")
+    p.add_argument("--log", type=Path, default=None, help="Log path")
     args = p.parse_args()
 
-    run_wordsim(args.vconfig, args.tconfig, args.log)
+    # setup logger
+    logfile = args.log if args.log is not None else Path(
+        f"{datetime.now().strftime('%Y%m%d_%H:%M')}.log")
+    add_file_handler(logfile)
+
+    logger.info("Arguments...")
+    for arg, val in sorted(vars(args).items()):
+        logger.info("{}: {}".format(arg, val))
+
+    # main
+    run_wordsim(args.vconfig, args.tconfig)

@@ -31,10 +31,12 @@ class W2VSimilarityEvaluator(Evaluator):
 
     def get_eval_metric(self):
         # spearman corr
-        human_scores = [b[0].gold for b in self.dataset.batch_iter(1, rand_flg=False)]
-        auto_scores = [b[0].model_pred for b in self.dataset.batch_iter(1, rand_flg=False)]
-        #assert all(human_scores), "Contain invalid gold data"
-        #assert all(auto_scores), "Contain invalid prediction"
+        human_scores = [
+            b[0].gold for b in self.dataset.batch_iter(1, rand_flg=False)]
+        auto_scores = [
+            b[0].model_pred for b in self.dataset.batch_iter(1, rand_flg=False)]
+        # assert all(human_scores), "Contain invalid gold data"
+        # assert all(auto_scores), "Contain invalid prediction"
         corr = spearmanr(human_scores, auto_scores)[0]
         return corr
 
@@ -59,4 +61,4 @@ class ClassificationEvaluator(Evaluator):
 
 
 def get_sklearn_kfoldcv(n_splits, seed=46):
-    return StratifiedKFold(n_splits=n_splits, random_state=seed)
+    return StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=seed)

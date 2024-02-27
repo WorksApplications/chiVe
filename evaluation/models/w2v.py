@@ -7,12 +7,10 @@ from gensim.models.keyedvectors import Word2VecKeyedVectors
 import logging
 import numpy as np
 from sklearn.decomposition import PCA
-from sys import argv
-from warnings import warn
 
 from utils import cos_sim, get_zero_vector
 
-logger = logging.getLogger(argv[0]).getChild(__file__)
+logger = logging.getLogger(__name__)
 
 
 class WordVectorizer():
@@ -56,6 +54,7 @@ class Word2VecAPI(WordVectorizer):
     """
     Word2Vec API for OOV handling or others
     """
+
     def __init__(self, w2v, config=None, train_desc=None):
         """
         args:
@@ -63,7 +62,8 @@ class Word2VecAPI(WordVectorizer):
             - config (dict): configs for adhoc process such as centering etc...
             - train_desc (dict): Description. This contains info for `Training Word2Vec`
         """
-        assert type(w2v) in [Word2Vec, KeyedVectors], "Invalid word2vec type: {}".format(type(w2v))
+        assert type(w2v) in [
+            Word2Vec, KeyedVectors], "Invalid word2vec type: {}".format(type(w2v))
         self._w2v = w2v
         self._config = config if config is not None else {}
         self.train_desc = train_desc if train_desc is not None else {}
@@ -74,7 +74,7 @@ class Word2VecAPI(WordVectorizer):
             post_config = self._config["post-process"]
             if 'pca' in post_config:
                 d = post_config["pca"]
-                assert self._w2v.wv.vector_size > d, "dim should be lower than original"
+                assert self._w2v.vector_size > d, "dim should be lower than original"
                 self.do_pca(d)
             if 'abtt' in post_config:
                 self.do_all_but_the_top(post_config["abtt"])
@@ -82,13 +82,13 @@ class Word2VecAPI(WordVectorizer):
             pass  # do nothing
 
     def do_pca(self, d):
-        self._w2v.wv.vectors = pca(self._w2v.wv.vectors, d)
-        self._w2v.wv.vector_size = d
+        self._w2v.vectors = pca(self._w2v.vectors, d)
+        self._w2v.vector_size = d
 
     def do_all_but_the_top(self, d=None):
         if d == None:
-            d = self._w2v.wv.vector_size // 100
-        self._w2v.wv.vectors = all_but_the_top(self._w2v.wv.vectors, d)
+            d = self._w2v.vector_size // 100
+        self._w2v.vectors = all_but_the_top(self._w2v.vectors, d)
 
     def _get_vec_with_oov(self, surface):
         if surface in self._w2v:
@@ -98,7 +98,7 @@ class Word2VecAPI(WordVectorizer):
             return self._oov_vec(surface), True
 
     def _oov_vec(self, surface):
-        return get_zero_vector(self._w2v.wv.vector_size)
+        return get_zero_vector(self._w2v.vector_size)
 
     def _pick_vec(self, surface):
         return self._w2v[surface]
@@ -110,7 +110,7 @@ class Word2VecAPI(WordVectorizer):
             vecs = vecs[kvs]
         if all(oovs):
             logging.warn("given surfaces are all OOV: {}".format(surfaces))
-            vecs = np.expand_dims(get_zero_vector(self._w2v.wv.vector_size),
+            vecs = np.expand_dims(get_zero_vector(self._w2v.vector_size),
                                   axis=0)
         return vecs.mean(axis=0)
 
@@ -142,8 +142,9 @@ def all_but_the_top(lookup_mat, d):
     # remove principal component
     pca = PCA(n_components=d, random_state=46)
     pca.fit(new_lookup_mat)
-    sim = new_lookup_mat.dot(pca.components_.T) # shape = (n_word, d)
-    new_lookup_mat -= new_lookup_mat.dot(pca.components_.T).dot(pca.components_)
+    sim = new_lookup_mat.dot(pca.components_.T)  # shape = (n_word, d)
+    new_lookup_mat -= new_lookup_mat.dot(
+        pca.components_.T).dot(pca.components_)
     return new_lookup_mat
 
 
@@ -158,14 +159,17 @@ def build_w2v_api(w2v, config, w2v_desc):
 
 def build_gensim_w2v(w2v_path, load_config, other_config):
     if load_config["w2v-fmt"] == False:
-        w2v = Word2Vec.load(w2v_path)
+        w2v = Word2Vec.load(w2v_path).wv
     elif load_config["w2v-fmt"] == True:
         if load_config["fmt"] == "bin":
             w2v = KeyedVectors.load_word2vec_format(w2v_path, binary=True)
         elif load_config["fmt"] == "txt":
             w2v = KeyedVectors.load_word2vec_format(w2v_path, binary=False)
+        elif load_config["fmt"] == "kv":
+            w2v = KeyedVectors.load(w2v_path)
         else:
             raise ValueError("Invalid format: {}".format(load_config["fmt"]))
     else:
-        raise ValueError("w2v-fmt should be bool: {}".format(load_config["w2v-fmt"]))
+        raise ValueError(
+            "w2v-fmt should be bool: {}".format(load_config["w2v-fmt"]))
     return w2v

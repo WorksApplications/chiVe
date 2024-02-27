@@ -1,4 +1,10 @@
 name: "jwsan"
-data-path: "/home/jovyan/jaword-embedding-evaluator/data/jwsan"
+data-path: "./data/JWSAN"
 process:
-  use-tokenizer: False
+  use-tokenizer: True
+  tokenizer:
+    name: "sudachi"
+    others:
+      mode: "C"
+      dic-name:
+      form: "normalized" # "normalized" or "surface"

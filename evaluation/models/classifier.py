@@ -2,9 +2,8 @@
 import logging
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
-from sys import argv
 
-logger = logging.getLogger(argv[0]).getChild(__file__)
+logger = logging.getLogger(__name__)
 
 
 def build_classifier(method, other_config):

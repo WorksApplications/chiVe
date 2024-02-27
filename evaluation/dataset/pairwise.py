@@ -1,6 +1,6 @@
 
 import pandas as pd
-from pathlib2 import Path
+from pathlib import Path
 
 from dataset.base import BaseDataset, BaseInstance
 from utils import build_tokenizer
@@ -20,9 +20,9 @@ class PairwiseSimilarityDataset(BaseDataset):
             - tok (Tokenizer): Tokenizer for entryies. If None, no tokenization
         """
         assert len(col1s) == len(col2s) and len(col1s) == len(sims), \
-               "Inconsistent length: {} / {} / {}" \
-               .format(len(col1s), len(col2s), len(sims))
-        insts = [PairwiseSimilarityInstance(c1, c2, sim) \
+            "Inconsistent length: {} / {} / {}" \
+            .format(len(col1s), len(col2s), len(sims))
+        insts = [PairwiseSimilarityInstance(c1, c2, sim)
                  for (c1, c2, sim) in zip(col1s, col2s, sims)]
         return PairwiseSimilarityDataset(samples=insts)
 
@@ -36,7 +36,8 @@ class PairwiseSimilarityInstance(BaseInstance):
         super(PairwiseSimilarityInstance, self).__init__()
         assert type(e1) == list
         assert type(e2) == list
-        assert type(score) in [int, float], "Invalid type: {}".format(type(score))
+        assert type(score) in [
+            int, float], "Invalid type: {}".format(type(score))
         self._triple = (e1, e2, score)
         self.gold = score
 
@@ -51,6 +52,7 @@ def build_pairwise_similarity_datasets(name, dir_path, process_config):
                               process_config["tokenizer"]["others"])
     else:
         tok = None
+
     if name == "tmu":
         datasets = build_tmu(dir_path, tok)
     elif name == "jwsan":
@@ -61,8 +63,8 @@ def build_pairwise_similarity_datasets(name, dir_path, process_config):
 
 
 def build_tmu(dir_path, tok=None):
-    _filenames = ['score_adj.csv.nkf', 'score_adv.csv.nkf.tr_space',
-                  'score_noun.csv.nkf.tr_space', 'score_verb.csv.nkf']
+    _filenames = ['score_adj.csv', 'score_adv.csv',
+                  'score_noun.csv', 'score_verb.csv']
     base = Path(dir_path)
     dats = []
     for fn in _filenames:
@@ -74,7 +76,8 @@ def build_tmu(dir_path, tok=None):
             col1s = [tok.wakati(c) for c in list(df["word1"])]
             col2s = [tok.wakati(c) for c in list(df["word2"])]
         scores = [float(score) for score in list(df["mean"])]
-        dat = PairwiseSimilarityDataset.build_from_triplet(col1s, col2s, scores)
+        dat = PairwiseSimilarityDataset.build_from_triplet(
+            col1s, col2s, scores)
         dat.name = "tmu-{}".format(fn)
         dats.append(dat)
     return dats
@@ -95,7 +98,8 @@ def build_jwsan(dir_path, tok=None):
             col2s = [tok.wakati(c) for c in list(df["word2"])]
         for e in _elms:
             scores = [float(score) for score in list(df[e])]
-            dat = PairwiseSimilarityDataset.build_from_triplet(col1s, col2s, scores)
+            dat = PairwiseSimilarityDataset.build_from_triplet(
+                col1s, col2s, scores)
             dat.name = "jwsan-{}-{}".format(fn, e)
             dats.append(dat)
     return dats

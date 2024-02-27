@@ -1,8 +1,9 @@
 
-from manalib.text.maout import get_result_from_mecab_guess, SudachiResult
-from pathlib2 import Path
+import itertools
+from pathlib import Path
 
 from dataset.base import BaseDataset, BaseInstance
+from utils import build_tokenizer
 
 
 class TextClassificationDataset(BaseDataset):
@@ -24,8 +25,8 @@ class TextClassificationDataset(BaseDataset):
             - label_name (list<str>): label names
         """
         assert len(docs) == len(label_ids), "Inconsistent length: {} != {}" \
-               .format(len(docs), len(label_ids))
-        insts = [TextClassificationInstance(d, l) \
+            .format(len(docs), len(label_ids))
+        insts = [TextClassificationInstance(d, l)
                  for (d, l) in zip(docs, label_ids)]
         return TextClassificationDataset(samples=insts, label_name=label_name)
 
@@ -57,27 +58,26 @@ def build_doc_classification_dataset(name, dir_path, process_config):
 
 
 def build_livedoor(dir_path, process_config):
-    LIVEDOOR_LABEL_LIST = ["dokujo-tsushin", "kaden-channel", "movie-enter", \
-                           "smax", "topic-news", "it-life-hack", \
+    LIVEDOOR_LABEL_LIST = ["dokujo-tsushin", "kaden-channel", "movie-enter",
+                           "smax", "topic-news", "it-life-hack",
                            "livedoor-homme", "peachy", "sports-watch"]
     pre_tokenized = process_config["pre-tokenized"]
-    if pre_tokenized == False:
-        # build toknizer
-        raise NotImplementedError("Not available now")
-    else:
-        tok = None
+    tok = None if pre_tokenized else build_tokenizer(
+        process_config["tokenizer"]["name"], process_config["tokenizer"]["others"])
+
     base = Path(dir_path)
     label_names = []
     txt_xs = []
     for label_dir in sorted(base.glob("*")):
+        if not label_dir.is_dir():
+            continue
         label_name = label_dir.name
         assert label_name in LIVEDOOR_LABEL_LIST, "Invalid label directory"
-        for doc_path in sorted(label_dir.glob("*")):  # get document files
+        for doc_path in sorted(label_dir.glob("*.txt")):  # get document files
             if pre_tokenized == True:
-                doc = load_doc(doc_path, process_config)
-            else:
                 raise NotImplementedError()
-                doc = tokenize_doc(doc_path, tok)
+            else:
+                doc = tokenize_doc(doc_path, tok, process_config)
             txt_xs.append(doc)
             label_names.append(label_name)
     assert len(txt_xs) == len(label_names), "Inconsistent length"
@@ -85,15 +85,17 @@ def build_livedoor(dir_path, process_config):
     return txt_xs, ys
 
 
-def load_doc(doc_path, process_config):
-    tok_name = process_config["tokenizer"]["name"]
-    if tok_name == "sudachi":
-        morphs = SudachiResult.get_result_from_file(doc_path, is_flat=True)
-    elif tok_name == "mecab":
-        morphs = get_result_from_mecab_guess(doc_path, is_flat=True)
+def tokenize_doc(doc_path, tok, process_config):
+    ms = []
+    with Path(doc_path).open() as fi:
+        for l in fi:
+            ms.append(tok.tokenize(l))
+    ms = itertools.chain.from_iterable(ms)
 
-    used_pos = process_config["used-pos"]
-    if used_pos == 'all':
-        return [m.surface() for m in morphs]
-    else:
-        return [m.surface() for m in morphs if m.part_of_speech() in used_pos]
+    if (used_pos := process_config["used-pos"]) != "all":
+        ms = (m for m in ms if m.part_of_speech()[0] in used_pos)
+
+    match (form := process_config["tokenizer"]["others"]["form"]):
+        case "surface": return [m.surface() for m in ms]
+        case "normalized": return [m.normalized_form() for m in ms]
+        case _: raise ValueError(f"invalid tokenizer form: {form}")
