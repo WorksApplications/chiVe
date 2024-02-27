@@ -1,0 +1,4 @@
+name: "jwsan"
+data-path: "/home/jovyan/jaword-embedding-evaluator/data/jwsan"
+process:
+  use-tokenizer: False

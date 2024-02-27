@@ -1,0 +1,9 @@
+name: "tmu"
+data-path: "/home/jovyan/jaword-embedding-evaluator/data/JapaneseWordSimilarityDataset"
+process:
+  use-tokenizer: True
+  tokenizer:
+    name: "sudachi"
+    others:
+      mode: "C"
+      dic-name:

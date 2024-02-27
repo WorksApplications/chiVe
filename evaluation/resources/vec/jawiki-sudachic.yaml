@@ -1,0 +1,12 @@
+vec-path: "/home/jovyan/jaword-embedding-evaluator/data/embs/jawiki-sudachic/jawiki_sudachic.wakati.w2v"
+loading:
+  w2v-fmt: False
+  fmt:
+gensim-others:
+description:
+  tokenizer:
+    name: "sudachi"
+    others:
+      mode: "C"
+      dic_name:
+api-setting:

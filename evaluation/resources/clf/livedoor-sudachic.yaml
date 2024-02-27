@@ -1,0 +1,14 @@
+name: "livedoor"
+data-path: "/home/jovyan/jaword-embedding-evaluator/data/livedoor-news-data/sudachic/body"
+process:
+  pre-tokenized: True
+  tokenizer:
+    name: "sudachi"
+    others:
+      mode: "C"
+      dic-name:
+  used-pos: ["名詞"]
+
+classifier:
+  method: "logreg"
+  others:
