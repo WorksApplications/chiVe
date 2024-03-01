@@ -1,0 +1,12 @@
+vec-path: "path/to/chive-1.3-mc90_gensim/chive-1.3-mc90.kv"
+loading:
+  w2v-fmt: True # set false to load gensim word2vec format (full model)
+  fmt: "kv" # set "txt" to load text format, or "kv" to keyedvector format
+gensim-others:
+description:
+  tokenizer:
+    name: "sudachi"
+    others:
+      mode: "C"
+      dic_name:
+api-setting:

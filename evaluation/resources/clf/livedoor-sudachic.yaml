@@ -1,0 +1,15 @@
+name: "livedoor"
+data-path: "./data/ldcc-20140209/text"
+process:
+  pre-tokenized: False
+  tokenizer:
+    name: "sudachi"
+    others:
+      mode: "C"
+      dic-name:
+      form: "normalized" # "surface" or "normalized"
+  used-pos: ["名詞"]
+
+classifier:
+  method: "logreg"
+  others:

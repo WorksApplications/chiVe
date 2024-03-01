@@ -1,0 +1,10 @@
+name: "jwsan"
+data-path: "./data/JWSAN"
+process:
+  use-tokenizer: True
+  tokenizer:
+    name: "sudachi"
+    others:
+      mode: "C"
+      dic-name:
+      form: "normalized" # "normalized" or "surface"

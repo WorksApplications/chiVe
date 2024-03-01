@@ -1,0 +1,6 @@
+gensim
+tqdm
+
+# sudachi for v1.3
+sudachipy==0.6.8
+sudachidict_core==20240109
