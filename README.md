@@ -12,7 +12,7 @@
 v1.3 では [CommonCrawl](https://commoncrawl.org/) から取得したウェブページ文章を採用しています。
 
 分かち書きにはワークスアプリケーションズの形態素解析器 [Sudachi](https://github.com/WorksApplications/Sudachi) を使用しています。
-Sudachi で定義されている短・中・長単位の 3 つの分割単位でコーパスを解析した結果を元に分散表現の学習を行なっています。
+Sudachi で定義されている A/B/C の 3 つの分割単位でコーパスを解析した結果を元に分散表現の学習を行なっています。
 
 ## データ
 
@@ -203,9 +203,17 @@ vectors.query("徳島") # ローカルにファイルをダウンロードせず
 
 ## ライセンス
 
+### v1.0, v1.1, v1.2
+
 Copyright (c) 2020 National Institute for Japanese Language and Linguistics and Works Applications Co., Ltd. All rights reserved.
 
 [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0) の下で[国立国語研究所](https://www.ninjal.ac.jp/)と[株式会社ワークスアプリケーションズ](https://www.worksap.co.jp/)によって提供されています。
+
+### v1.3
+
+Copyright (c) 2024 Works Applications Co., Ltd. All rights reserved.
+
+[Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0) の下で[株式会社ワークスアプリケーションズ](https://www.worksap.co.jp/)によって提供されています。
 
 ## Slack
 

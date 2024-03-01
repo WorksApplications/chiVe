@@ -1,4 +1,4 @@
-# chiVe: Japanese Word Embedding with Sudachi & NWJC
+# chiVe: Japanese Word Embedding with Sudachi
 
 [日本語 README](README.md)
 
@@ -12,7 +12,7 @@ For v1.0-v1.2, we used [NINJAL Web Japanese Corpus (NWJC)](https://masayu-a.gith
 For v1.3, we used texts taken from [CommonCrawl](https://commoncrawl.org/).
 
 We used [Sudachi](https://github.com/WorksApplications/Sudachi) by Works Applications for tokenization.
-We used Sudachi's multi-granular tokenziation results (short, mid, and named entity) of the corpus to train word vectors.
+We used Sudachi's multi-granular tokenziation results of the corpus to train word vectors.
 
 ## Data
 
@@ -199,9 +199,17 @@ vectors.query("徳島") # Returns the vector quickly, even with no local file do
 
 ## Licence
 
+### v1.0, v1.1, v1.2
+
 Copyright (c) 2020 National Institute for Japanese Language and Linguistics and Works Applications Co., Ltd. All rights reserved.
 
-"chiVe" is distributed by [National Institute for Japanese Langauge and Linguistics](https://www.ninjal.ac.jp/) and [Works Applications Co.,Ltd.](https://www.worksap.co.jp/) under [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+"chiVe" v1.0, v1.1 and v1.2 are distributed by [National Institute for Japanese Langauge and Linguistics](https://www.ninjal.ac.jp/) and [Works Applications Co.,Ltd.](https://www.worksap.co.jp/) under [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
+### v1.3
+
+Copyright (c) 2024 Works Applications Co., Ltd. All rights reserved.
+
+"chiVe" v1.3 is distributed by [Works Applications Co.,Ltd.](https://www.worksap.co.jp/) under [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
 ## Slack
 
